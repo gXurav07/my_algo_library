@@ -25,7 +25,7 @@ ll query(int idx) // O(logN)
 }
 
 // Update operation:- increasing value of idx th element to val
-void update(int idx, ll val, int n) // O(logN)
+void update(int idx, ll val, int n) // O(logN)  // value of val must be >= previous ar[index]
 {
     while(idx<=n)
     {

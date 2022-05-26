@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-
-class dsu{
+ 
+class dsu{ 
     int n;
     int *parent; 
     int *height;  // Helps in Keeping find complexity O(logn)
