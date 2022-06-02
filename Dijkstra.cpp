@@ -252,7 +252,7 @@ void dijkstra(int n, int i)
     int sz=0;
     dist[i]=0;
     for(vll ar: gr[i]){
-        dist[ar[0]]=min(ar[1],dist[ar[0]]);
+        dist[ar[0]]=min(ar[1],dist[ar[0]]);  // To take caree of multiple edges from u to v
         pq.push({ar[1],ar[0]});
         sz++;
     }
