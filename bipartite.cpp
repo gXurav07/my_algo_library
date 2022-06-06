@@ -1,22 +1,21 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-  
+
 
 #define fo(i,n) for(ll i=0;i<n;i++)
 #define fr(i,n) for(ll i=1;i<=n;i++)
 #define f(i,l,r) for(ll i=l;i<=r;i++)
-#define rf(i,r,l) for(ll i=r;i>=l;i--)
+#define rf(i,l,r) for(ll i=r;i>=l;i--)
 #define inst(v,i,val) v.insert(v.begin()+i,val)
 #define pqi priority_queue<int>  // can also be done with typedef
 #define minpqi priority_queue<int,vector<int>,greater<int>>
 #define inf 9223372036854775807
 #define prim 1000000007
-#define pb push_back
 
 typedef long long ll;
 typedef vector<ll> vll;
-typedef vector<vll> vvll; 
+typedef vector<vll> vvll;
 typedef vector<int> vi;
 typedef vector<vi> vvi;
 typedef vector<string> vs;
@@ -31,34 +30,6 @@ typedef pair<ll,string> pls;
 typedef pair<string,ll> psl;
 typedef unordered_map<ll,ll> umll; 
 
-class defaultdict{  // create object as defaultdict dd(-1); -// -1 is the default value
-    ll val;
-    map<ll,ll> mp;
-
-    public:
-    defaultdict(ll a): val(a) {}
-
-    ll &operator[](const ll &idx) {
-        auto itr = mp.find(idx);
-        if(itr==mp.end()){
-            mp.insert(pair<ll,ll>(idx,val));
-            itr = mp.find(idx);
-            return itr->second;
-        }
-        else return itr->second;    
-    }
-
-    void clear() { mp.clear(); return;}
-    void setdef(ll x) { val =x; return;}
-    void erase(ll x) {mp.erase(x); return;}
-    vector<ll> keys(){
-        vector<ll> kys;
-        for(auto i=mp.begin();i!=mp.end();i++)
-            kys.push_back(i->first);
-        return kys;
-    } 
-
-};
 
 void print(){cout<<'\n';} 
 template<typename T, typename ...TAIL>
@@ -72,7 +43,7 @@ template<typename T>
 void show(vector<T> v){   // prints the entire vector
     fo(i,v.size()) cout<<v[i]<<" ";
     cout<<"\n";
-    return; }
+    return; } 
 template<typename T>
 T max(vector<T> &v) { return *max_element (v.begin(), v.end()); }
 template<typename T>
@@ -104,9 +75,9 @@ void sort(vector<T> &v) { sort(v.begin(), v.end()); } // sorts the original
 template<typename T>
 void reverse(vector<T> &v) { reverse(v.begin(), v.end()); } // reverses the original
 template<typename T>
-vector<T> sorted(vector<T> v) { sort(v.begin(), v.end()); return v; } // doesn't sorts the original
+vector<T> srt(vector<T> v) { sort(v.begin(), v.end()); return v; } // doesn't sorts the original
 template<typename T>
-vector<T> reversed(vector<T> v) { reverse(v.begin(), v.end()); return v; } // doesn't reverses the original
+vector<T> rev(vector<T> v) { reverse(v.begin(), v.end()); return v; } // doesn't reverses the original
 
 template <typename T>
 vector<T> slicing(vector<T> const& v,
@@ -166,9 +137,6 @@ ll modexp(ll a, ll b, ll p)  // calculate (a^b)%prime
     else return (((x*x)%p)*a)%p;
 
 }
-ll pow(ll a, ll b){
-    return modexp(a,b,inf);
-}
 ll modexp2(ll a, ll b, ll c, ll p) // calculate (a^(b^c))%prime
 {
     // By Fermat's Little Theorem (a^(p-1))%p = 1 if p is prime 
@@ -183,42 +151,42 @@ int gcdExtended(int a, int b, int* x, int* y);
 // Function to find modulo inverse of a wrt m
 int modInverse(int a, int m)  
 {
-	int x, y;
-	int g = gcdExtended(a, m, &x, &y);
-	if (g != 1)
-	{
+    int x, y;
+    int g = gcdExtended(a, m, &x, &y);
+    if (g != 1)
+    {
         cout << "Inverse doesn't exist";
         return -1;
     }
-	else 
-	{
-		// m is added to handle negative x
-		int res = (x % m + m) % m;
-		return res;
-	}
+    else 
+    {
+        // m is added to handle negative x
+        int res = (x % m + m) % m;
+        return res;
+    }
 }
 
 // Function for extended Euclidean Algorithm
 int gcdExtended(int a, int b, int* x, int* y)
 {
-	
-	// Base Case
-	if (a == 0)
-	{
-		*x = 0, *y = 1;
-		return b;
-	}
-	
-	// To store results of recursive call
-	int x1, y1;
-	int gcd = gcdExtended(b % a, a, &x1, &y1);
+    
+    // Base Case
+    if (a == 0)
+    {
+        *x = 0, *y = 1;
+        return b;
+    }
+    
+    // To store results of recursive call
+    int x1, y1;
+    int gcd = gcdExtended(b % a, a, &x1, &y1);
 
-	// Update x and y using results of recursive
-	// call
-	*x = y1 - (b / a) * x1;
-	*y = x1;
+    // Update x and y using results of recursive
+    // call
+    *x = y1 - (b / a) * x1;
+    *y = x1;
 
-	return gcd;
+    return gcd;
 }
 
 ll npr(ll n, ll r, ll p)
@@ -257,51 +225,135 @@ ll count(string &st, char ch)
         if(x==ch) c++;
     }
     return c;
-}
-
-// floor of log10 of x
-ll flog10(ll x) 
+} 
+#define max_siz 200007
+vector<int> gr[max_siz];
+int vis[max_siz];
+void reset(int n) // resets the graph
 {
-    ll c=0;
-    while(x>0)
-    {
-        c++; 
-        x/=10;
-    }
-    return (c-1);
-
+    fo(i,n+1) { gr[i].clear(); vis[i]=0; }
+    return; 
 }
 
-// floor of log2 of x
-ll flog2(ll x) 
+// Adds an edge from u to v;
+void addedge(int u, int v) { gr[u].push_back(v); }
+void removeedeg(int u, int v) { remove(gr[u].begin(),gr[u].end(),v);}
+
+
+
+deque<int> dq;
+vi lvl;
+void bfs(int i)
 {
-    ll c=0;
-    while(x>0)
+    if(vis[i]) return;
+    dq.push_back(i);
+    lvl[i]=(0);
+    int n = 1;
+    while(n>0)
     {
-        c++;
-        x/=2;
+        int j = dq.front();
+        int l = lvl[j];
+        dq.pop_front();
+        n--;
+        if(vis[j]) continue;
+        cout<<j<<" ";
+        vis[j]=1;
+
+        for(int k: gr[j])
+        {
+            if(!vis[k])
+            {
+                dq.push_back(k);
+                lvl[k]=l+1;
+                n++;
+            }
+        }
     }
-    return (c-1);
-
-}
-
  
+    return;
+}
+
+void dfs(int i)
+{
+    if(vis[i]) return;
+    vis[i]=1;
+    cout<<i<<" ";
+
+    for(int j: gr[i]) dfs(j);
+    return;
+}
+
+
+vi col;
+int chekBipartite(int i, int c){
+    col[i]=c;
+
+    for(int j: gr[i])
+    {
+        if(col[j]<0) { if(!chekBipartite(j,(1-c))) return 0; }
+        else {
+            if(col[j]==c) return 0;
+        }
+    }
+    return 1;
+}
+
+
+int isBipartite(int n)
+{
+    col.assign(n+1,-1);
+    
+    fr(i,n){
+        if(col[i]<0){
+            if(chekBipartite(i,0)==0) return 0;
+        }
+    }
+    return 1;
+
+}
+
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    ll t,n,m,k;
-    //ll a,b,c,d;
-    //ll x,y,z;
+    int t,n,m;
     cin>>t;
-    fr(_,t)
+    fo(_,t)
     {
-        cin>>n;
-        vll ar(n);
-        fo(i,n) cin>>ar[i];
+        cin>>n>>m;
+        reset(n);
+        lvl.assign(n+1,-1);
+
+        fo(i,m)
+        {
+            int u,v;
+            cin>>u>>v;
+            addedge(u,v);
+        }
+
+
+
+
+        
 
     }
-    
-
     return 0;
-} 
+}
+
+/*
+1
+4 4
+1 2
+2 3
+3 4
+4 1
+
+
+1
+4 4
+1 2
+1 4
+3 2
+3 4
+*/
