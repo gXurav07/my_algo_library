@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
-
+ 
 using namespace std;
-  
-
+ 
+ 
 #define fo(i,n) for(ll i=0;i<n;i++)
 #define fr(i,n) for(ll i=1;i<=n;i++)
 #define f(i,l,r) for(ll i=l;i<=r;i++)
@@ -10,13 +10,26 @@ using namespace std;
 #define inst(v,i,val) v.insert(v.begin()+i,val)
 #define pqi priority_queue<int>  // can also be done with typedef
 #define minpqi priority_queue<int,vector<int>,greater<int>>
-#define inf 9223372036854775807
-#define prim 1000000007
+#define INF 9223372036854775807
+#define inf 7e18
+#define MOD 1000000007
+#define MOD2 998244353
+#define PI 3.141592653589793238462
 #define pb push_back
-
+#define pob pop_back
+#define len(x) ((x).size())
+#define mpr make_pair
+#define ff first
+#define ss second
+#define all(x) (x).begin(), (x).end()
+#define amax(x,y) x = max(x,y);
+#define amin(x,y) x = min(x,y);
+ 
+ 
+ 
 typedef long long ll;
 typedef vector<ll> vll;
-typedef vector<vll> vvll;
+typedef vector<vll> vvll; 
 typedef vector<int> vi;
 typedef vector<vi> vvi;
 typedef vector<string> vs;
@@ -30,7 +43,20 @@ typedef pair<string,int> psi;
 typedef pair<ll,string> pls;
 typedef pair<string,ll> psl;
 typedef unordered_map<ll,ll> umll; 
-
+ 
+ 
+#ifdef GAURAV_07 
+#define debug(x) cerr << #x <<" "; _print(x); cerr << endl;
+#else
+#define debug(x)
+#endif
+template <typename T> void _print(T x) {cerr << x;}
+template <typename T, typename V> void _print(pair <T, V> p) {cerr << " pair("; _print(p.first); cerr << ","; _print(p.second); cerr << ")";}
+template <typename T> void _print(vector <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << ", ";} cerr << "]";}
+template <typename T> void _print(set <T> v) {cerr << "{ "; for (T i : v) {_print(i); cerr << ", ";} cerr << "}";}
+template <typename T, typename V> void _print(map <T, V> mp) {cerr << "[ "; for (auto i : mp) {_print(i.first); cerr<<": "; _print(i.second); cerr<<" , ";} cerr << "]";}
+template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
+ 
 class defaultdict{  // create object as defaultdict dd(-1); -// -1 is the default value
     ll val;
     map<ll,ll> mp;
@@ -185,7 +211,7 @@ ll modexp2(ll a, ll b, ll c, ll p) // calculate (a^(b^c))%prime
 }
 template <typename T>
 T mmi(T N, T p){    // Modular Multiplicative Inverse    
-    return powr(N,p-2,p);
+    return modexp(N,p-2,p);
 }
 
 ll npr(ll n, ll r, ll p)
@@ -251,8 +277,8 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     ll t,n,m,k;
-    ll a,b,c,d;
-    ll x,y,z;
+    // ll a,b,c,d;
+    // ll x,y,z;
     cin>>t;
     fr(_,t)
     {

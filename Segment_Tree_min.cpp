@@ -1,4 +1,4 @@
-//  SUM QUERY + POINT UPDATE
+//  MIN QUERY + POINT UPDATE
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -21,7 +21,7 @@ void build(int i, int l, int r, vector<ll> &ar)
     int mid= (l+r)/2;
     build(2*i,l,mid,ar);
     build(2*i+1,mid+1,r,ar);
-    tree[i] = min(tree[2*i],tree[2*i +1]);  // For sum queries
+    tree[i] = min(tree[2*i],tree[2*i +1]);  // For min queries
     return;
 }
 
