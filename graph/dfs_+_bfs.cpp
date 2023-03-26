@@ -249,42 +249,7 @@ void dfs(int i)
     return;
 }
 
-deque<int> dq;
-int lvl[max_siz];
-int parent[max_siz];
-void bfs(int i)
-{
-    if(vis[i]) return;
-    dq.push_back(i);
-    lvl[i]=0;
-    int n = 1;
-    vis[i]=1;
 
-    while(n>0)
-    {
-        int j = dq.front();
-        int l = lvl[j];
-        dq.pop_front();
-        n--;
-
-        cout<<j<<" ";
-
-
-        for(int k: gr[j])
-        {
-            if(!vis[k])
-            {
-                dq.push_back(k);
-                lvl[k] = (l+1);
-                vis[k]=1;
-                parent[k]=j;
-                n++;
-            }
-        }
-    }
-
-    return;
-}
 
 int main()
 {
