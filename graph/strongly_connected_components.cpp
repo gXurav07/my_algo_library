@@ -304,6 +304,7 @@ void find_scc(int n)
 }
 
 
+
 // KOSARAJU's ALGORITHM
 int main()
 {
